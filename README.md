@@ -1,4 +1,3 @@
-# 430-Group5-Project
 WDD 430 Group 5 Project
 
 Group Members: Lenora Stevens, Berny Fred, Emmanuel Dolo, Fortunate Kwenda, Goodness Arinzechukwu Okafor
