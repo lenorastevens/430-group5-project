@@ -6,8 +6,8 @@ const HeroImage = () => {
       <Image
         src="/hero.jpg"
         alt="Hero"
-        width={700}
-        height={600}
+        width={500}
+        height={430}
         style={{ borderRadius: '10px' }}
         priority
       />
