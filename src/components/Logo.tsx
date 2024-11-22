@@ -1,16 +1,21 @@
 import Image from 'next/image';
 
-const LogoImage = () => {
-    return (
-        <div className="logo">
-            <Image
-                src="/logo-no-background.png"
-                alt="Logo"
-                width={125}
-                height={75}
-            />
-        </div>
-    );
+export default function LogoImage() {
+  return (
+        
+    <Image
+      className="logo"
+      src="/logo-no-background.png"
+      alt="Logo"
+      sizes="60vw"
+      style={{
+        width: '90%',
+        height: 'auto',
+      }}
+      width={384}
+      height={526}
+    />  
+  );
 };
 
-export default LogoImage;
+// export default LogoImage;

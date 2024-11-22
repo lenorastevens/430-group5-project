@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { epilogue } from './ui/fonts';
 
-const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -13,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"  
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={epilogue.className}>{children}</body>
     </html>
   );
 }

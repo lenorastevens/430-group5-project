@@ -1,18 +1,22 @@
 import Image from 'next/image';
 
-const HeroImage = () => {
+export default function HeroImage() {
   return (
-    <div className="hero">
-      <Image
-        src="/hero.jpg"
-        alt="Hero"
-        width={500}
-        height={430}
-        style={{ borderRadius: '10px' }}
-        priority
-      />
-    </div>
+    <Image
+      className="hero"
+      src="/hero.jpg"
+      alt="Hero"
+      sizes="80vw"
+      style={{
+        width: '100%',
+        height: 'auto',
+      }}
+      width={736}
+      height={736}
+      priority
+  />
+    
   );
 };
 
-export default HeroImage;
+// export default HeroImage;
