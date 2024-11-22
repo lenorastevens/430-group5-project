@@ -7,7 +7,7 @@ import LogoImage from '@/components/Logo';
 
 export default function HomePage() {
   return (
-    <div className="container">
+    <div id="container">
       {/* Left Navigation Bar */}
       <header className="header">
         <div className="search-bar">
@@ -16,7 +16,7 @@ export default function HomePage() {
         <LoginButton />
       </header>
       
-      <div className="left-nav">
+      <div id="left-nav">
         <LogoImage />
         <Navbar />
       </div>
