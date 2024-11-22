@@ -74,10 +74,12 @@ h1, h2, h3, h4, h5, h6 {
 /* Main content area */
 .main-content {
   grid-column: 3/7;
+  margin-top: 8%;
 }
 
 .hero {
  width: fit-content;
+ border-radius: 10px;
 }
 
 /* Header section for search and login */
@@ -126,6 +128,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10%;
   grid-column: 7/13;
   font-size: 1.5em;
+  margin-top: 8%;
 } 
 .right-description h2 {
   text-align: center;
