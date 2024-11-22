@@ -1,21 +1,319 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Reset and base */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #faedcd;  
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+/* Typography*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+}
+
+
+/* Main container*/
+.container {
+  display: flex;
+  margin-top: 60px;  
+}
+
+
+/* Left navigation bar */
+.left-nav {
+  background-color: #faedcd;  
+  width: 240px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: calc(850vh - 60px);
+  left: 0;
+  top: 120px;  
+  z-index: 9;
+}
+
+
+.left-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.left-nav ul li {
+  margin-bottom: 40px;
+}
+
+
+.left-nav ul li a {
+  text-decoration: none;
+  color:black;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+.left-nav ul li a:hover {
+  color: #bc6c25;
+}
+
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 240px;
+  padding: 20px;
+}
+
+
+/* Header section for search and login */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;  
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;  
+  left: 0;  
+  z-index: 10;  
+  background-color:#faedcd;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Search bar and login button */
+.search-bar {
+  flex: 1;
+  margin-right: 20px;
+  padding: 8px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+
+.login-button {
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  border: none;
+  margin-right: 40px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.login-button:hover {
+  background-color:#bc6c25;
+}
+
+/* Hero image */
+.hero {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-left: 0;
+   
+}
+
+
+/* Right description section */
+.right-description {
+  width: 543px;
+  background-color: #ded7c5;
+  padding: 20px;
+  font-size: 28px;
+  position: fixed;
+  right: 0;
+  top: 120px; 
+  overflow-y: auto;
+  border-left: 1px solid #ccc;
+} 
+ 
+
+/* for tablet screens */
+@media (max-width: 768px) {
+
+  .container {
+    flex-direction: column;
+    
+  }
+
+
+  /* left navigation for tablet screens */
+  .left-nav {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 15px;
+    top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;  
+  }
+
+  /* main content to fit full width */
+  .main-content {
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+  }
+
+
+  /* header*/
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+  }
+
+
+  .search-bar {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+ 
+
+  .login-button {
+    width: auto;
+    padding: 10px 16px;
+  }
+
+
+  /* Hero section */
+  .hero {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  /* hero image*/
+  .hero img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  /* Right description section */
+  .right-description {
+    width: 100%;
+    position: relative;
+    height: auto;
+    padding: 15px;
+    margin-top: -100px;
+    border-left: none;
+    box-sizing: border-box;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* For large screens */
+@media (min-width: 1024px) {
+  .hamburger {
+    display: none; /* Hide hamburger menu */
+  }
+
+  .menu {
+    display: flex;  
+    flex-direction: column;  
+  }
+}
+
+ 
+/* mobile screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .left-nav {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    background-color: #faedcd;
+  }
+
+  .hamburger {
+    background: none;
+    border: none;
+    font-size: 24px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: black;
+    text-align: left;
+    width: 100%;
+  }
+
+  .search-bar {
+    width: 50%;
+    margin-bottom: 0;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+
+  .login-button {
+    width: auto;
+    font-size: 18px;
+    padding: 10px;
+    margin-right: 10px;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu li {
+    border-top: 1px solid #ccc;
+  }
+
+  .menu li:first-child {
+    border-top: none;
+  }
+
+  .menu li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+  }
+
+  .menu li a:hover {
+    color: #bc6c25;
+  }
+
+  
+  .hero {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+  }
+
+  .hero img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+ 
 }
