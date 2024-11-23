@@ -36,7 +36,8 @@ export default function HomePage() {
        
       {/* Footer Section */}
       <footer className="footer">
-      &copy; {currentYear} WDD340-Group 5.
+        <p> &copy; {currentYear} WDD340-Group 5.</p>
+     
      </footer>
       </div>
   );
