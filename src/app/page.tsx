@@ -6,6 +6,8 @@ import LoginButton from '../components/LoginButton';
 import LogoImage from '@/components/Logo';
 
 export default function HomePage() {
+
+  const currentYear = new Date().getFullYear();
   return (
     <div id="container">
       {/* Left Navigation Bar */}
@@ -31,6 +33,11 @@ export default function HomePage() {
       <div id="right-description">
         <Description />
       </div>
-    </div>
+       
+      {/* Footer Section */}
+      <footer className="footer">
+      &copy; {currentYear} WDD340-Group 5.
+     </footer>
+      </div>
   );
 }
