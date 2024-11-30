@@ -10,28 +10,31 @@ export default function HomePage() {
   const currentYear = new Date().getFullYear();
   return (
     <div id="container">
-      {/* Left Navigation Bar */}
+      {/* Top Navigation Bar */}
       <header className="header">
         <div className="search-bar">
           <SearchBar />
         </div>
         <LoginButton />
       </header>
-      
+      {/* Left Nav Bar */}
       <div id="left-nav">
         <LogoImage />
         <Navbar />
       </div>
       
+      <div className='main-body'>
+        <div className='homePage-container'>
+          {/* Main Content Left */}
+          <div className="main-content">        
+            <HeroImage />
+          </div>
 
-      {/* Main Content */}
-      <div className="main-content">        
-        <HeroImage />
-      </div>
-
-      {/* Right Description Section */}
-      <div id="right-description">
-        <Description />
+          {/* Main Content Right */}
+          <div id="right-description">
+            <Description />
+          </div>
+        </div>
       </div>
        
       {/* Footer Section */}
