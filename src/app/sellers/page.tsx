@@ -37,39 +37,41 @@ const SellersPage = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Artisans</h1>
+    <div className='main-body'>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Artisans</h1>
 
-      {loading && <p className={styles.loading}>Loading artisans...</p>}
+        {loading && <p className={styles.loading}>Loading artisans...</p>}
 
-      {error && <p className={styles.error}>Error: {error}</p>}
+        {error && <p className={styles.error}>Error: {error}</p>}
 
-      {!loading && !error && artisans.length === 0 && (
-        <p className={styles.empty}>No artisans found.</p>
-      )}
+        {!loading && !error && artisans.length === 0 && (
+          <p className={styles.empty}>No artisans found.</p>
+        )}
 
-      {!loading && !error && artisans.length > 0 && (
-        <div className={styles.tableContainer}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Bio</th>
-              </tr>
-            </thead>
-            <tbody>
-              {artisans.map((artisan) => (
-                <tr key={artisan.artisan_id}>
-                  <td>{artisan.artisan_firstname}</td>
-                  <td>{artisan.artisan_lastname}</td>
-                  <td>{artisan.artisan_bio}</td>
+        {!loading && !error && artisans.length > 0 && (
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Bio</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              </thead>
+              <tbody>
+                {artisans.map((artisan) => (
+                  <tr key={artisan.artisan_id}>
+                    <td>{artisan.artisan_firstname}</td>
+                    <td>{artisan.artisan_lastname}</td>
+                    <td>{artisan.artisan_bio}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

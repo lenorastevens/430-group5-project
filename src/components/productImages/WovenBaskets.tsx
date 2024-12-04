@@ -7,7 +7,7 @@ export default function WovenBasketsImage() {
       className="prod-img"
       src="/images/woven-baskets.webp"
       alt="woven baskets"
-      sizes="10vw"
+      sizes="30vw"
       style={{
         width: 'auto',
         height: '90%',

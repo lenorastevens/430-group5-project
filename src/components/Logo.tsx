@@ -6,7 +6,7 @@ export default function LogoImage() {
     <Image
       className="logo"
       src="/logo-no-background.png"
-      alt="Logo"
+      alt="Handcrafted Have Logo"
       sizes="60vw"
       style={{
         width: '90%',

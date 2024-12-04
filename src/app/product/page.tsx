@@ -1,7 +1,3 @@
-import Navbar from '../../components/Navbar';
-import SearchBar from '../../components/SearchBar';
-import LoginButton from '../../components/LoginButton';
-import LogoImage from '@/components/Logo';
 import GlassBoxImage from '@/components/productImages/GlassBox';
 import StoneVaseImage from '@/components/productImages/StoneVase';
 import WovenBasketsImage from '@/components/productImages/WovenBaskets';
@@ -13,22 +9,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Products() {
-  const currentYear = new Date().getFullYear();
     return (
-      <div id="container">
-        {/* Top Navigation Bar */}
-        <header className="header">
-          <div className="search-bar">
-            <SearchBar />
-          </div>
-          <LoginButton />
-        </header>
-        {/* Left Nav Bar */}
-        <div id="left-nav">
-          <LogoImage />
-          <Navbar />
-        </div>
-        
+             
         <div className='main-body'>
           <h1>Products Page</h1>
           <ul className='card-container'>
@@ -37,8 +19,8 @@ export default async function Products() {
                 <GlassBoxImage/>
               </div>
               <div className='prod-details'>
-                <h3>Royal Glass Trunk Box</h3>
-                <h4>$65.00</h4>
+                <h2>Royal Glass Trunk Box</h2>
+                <h3>$65.00</h3>
                 <p>This stylish glass trunk box with a brass frame serves as an organizer for your several items of daily use.</p>
                 <p>Amy Burns</p>
                 <a>Reviews & Ratings</a>
@@ -49,8 +31,8 @@ export default async function Products() {
                 <StoneVaseImage/>
               </div>
               <div className='prod-details'>
-                <h3>Stone Vase</h3>
-                <h4>$75.99</h4>
+                <h2>Stone Vase</h2>
+                <h3>$75.99</h3>
                 <p>The intricate texture of this white-colored soft stone modern flowerpot makes it stand out among other décor items.</p>
                 <p>Balazs Orban</p>
                 <a>Reviews & Ratings</a>
@@ -61,8 +43,8 @@ export default async function Products() {
                 <WovenBasketsImage/>
               </div>
               <div className='prod-details'>
-                <h3>Woven-Baskets</h3>
-                <h4>$45</h4>
+                <h2>Woven-Baskets</h2>
+                <h3>$45</h3>
                 <p>Carefully woven, but incredibly sturdy, these baskets are useful and decorative.</p>
                 <p>Amy Burns</p>
                 <a>Reviews & Ratings</a>
@@ -73,8 +55,8 @@ export default async function Products() {
                 <ClayVasesImage/>
               </div>
               <div className='prod-details'>
-                <h3>Custom Clay Vases</h3>
-                <h4>$85</h4>
+                <h2>Custom Clay Vases</h2>
+                <h3>$85</h3>
                 <p>Expertly designed and crafted to your specificatiosns.  Buy just one create a set.</p>
                 <p>Balazs Orban</p>
                 <a>Reviews & Ratings</a>
@@ -83,12 +65,7 @@ export default async function Products() {
           </ul>
         </div>
          
-        {/* Footer Section */}
-        <footer className="footer">
-          <p> &copy; {currentYear} WDD340-Group 5.</p>
-       
-       </footer>
-        </div>
+        
     );
   }
   

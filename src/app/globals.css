@@ -25,12 +25,13 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font);
   text-align: center;
+  margin: 1%;
 }
 
 
 
 /* Main container*/
-#container {
+body {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 }
@@ -141,7 +142,6 @@ h1, h2, h3, h4, h5, h6 {
 } 
 .right-description h2 {
   text-align: center;
-  margin-top: -50px;
   font-size: 2em;
 }
 
@@ -169,10 +169,11 @@ h1, h2, h3, h4, h5, h6 {
   padding: 2%;
 }
 .prod-img {
-  max-height: 125px;
   border-radius: 8px;
+  max-height: 125px;
   margin: 0;
   padding: 0;
+  justify-self: center;
 }
 
 /* Footer Styles */
@@ -234,15 +235,17 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
   }
-   
-  @media (max-width: 700px) {
+
+  .prod-img {
+    width: fit-content;
+    border-radius: 8px;
+    margin: 0;
+    padding: 0;
+  }
     
-  footer.p {
-    
-    background: blue;
-    
-    padding: '10px',
+  .footer {
+    margin-top: 8%;
   }
 
-}
+  
 }

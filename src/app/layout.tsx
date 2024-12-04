@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import './globals.css';
 import { epilogue } from './ui/fonts';
-
+import TopSearch from '@/components/TopSearch';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +14,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"  
         />
       </head>
-      <body className={epilogue.className}>{children}</body>
+      
+      <body className={epilogue.className}>
+        <TopSearch/>
+
+        <Navbar/>
+
+        {children}
+
+        <Footer/>
+        
+      </body>
+  
     </html>
   );
-}
+};
