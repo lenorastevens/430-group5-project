@@ -7,7 +7,7 @@ export default function StoneVaseImage() {
       className="prod-img"
       src="/images/white-vase.webp"
       alt="white vase"
-      sizes="10vw"
+      sizes="30vw"
       style={{
         width: 'auto',
         height: '90%',

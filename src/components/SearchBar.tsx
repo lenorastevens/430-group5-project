@@ -1,10 +1,12 @@
 const SearchBar = () => {
   return (
-    <input
-      type="text"
-      placeholder="Search..."
-      className="search-bar"
-    />
+    <div>
+        <input
+          type="text"
+          placeholder="Search..."
+          className="search-bar"
+        />
+    </div>
   );
 };
 

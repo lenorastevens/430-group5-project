@@ -6,14 +6,14 @@ export default function ClayVasesImage() {
     <Image
       className="prod-img"
       src="/images/pottery.webp"
-      alt="custom clay vases"
-      sizes="10vw"
+      alt="Picture of custom clay vases"
+      sizes="50vw"
       style={{
         width: 'auto',
         height: '90%',
       }}
-      width={384}
-      height={526}
+      width={526}
+      height={384}
     />  
   );
 };

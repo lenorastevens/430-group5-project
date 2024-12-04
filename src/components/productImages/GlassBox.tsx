@@ -6,8 +6,8 @@ export default function GlassBoxImage() {
     <Image
       className="prod-img"
       src="/images/glass-box.webp"
-      alt="glass box"
-      sizes="10vw"
+      alt="Picture of glass box"
+      sizes="30vw"
       style={{
         width: 'auto',
         height: '90%',
