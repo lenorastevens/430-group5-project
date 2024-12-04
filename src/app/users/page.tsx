@@ -1,7 +1,7 @@
-export default function Customers() {
+export default function Users() {
     return (
     <div className='main-body'>
-      <h1>Customers Page</h1>
+      <h1>User Profile Page</h1>
     
     </div>
     );
