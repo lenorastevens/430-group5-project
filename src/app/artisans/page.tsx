@@ -18,7 +18,7 @@ const fetchArtisans = async (): Promise<Artisan[]> => {
   return response.json();
 };
 
-const SellersPage = () => {
+const ArtisansPage = () => {
   const [artisans, setArtisans] = useState<Artisan[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -76,5 +76,5 @@ const SellersPage = () => {
   );
 };
 
-export default SellersPage;
+export default ArtisansPage;
 
