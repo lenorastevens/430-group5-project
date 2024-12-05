@@ -7,13 +7,14 @@ export default function LogoImage() {
       className="logo"
       src="/logo-no-background.png"
       alt="Handcrafted Have Logo"
-      sizes="60vw"
+      placeholder = 'empty'
+      sizes="20vw"
       style={{
         width: '90%',
         height: 'auto',
       }}
-      width={384}
-      height={526}
+      width={150}
+      height={205}
     />  
   );
 };

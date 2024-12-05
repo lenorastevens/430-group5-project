@@ -155,6 +155,7 @@ body {
   padding: 0;
 }
 
+/* Product Page Product Cards */
 .prod-card {
   display: grid;
   grid-template-columns: 1fr;
@@ -171,11 +172,33 @@ body {
 .prod-img {
   border-radius: 8px;
   max-height: 125px;
+  width: auto;
   justify-self: center;
 }
 .prod-name {
   text-decoration: none;
   color: #525C39;
+}
+
+/* Detail Page Styles */
+.prod-title {
+  margin: 4%;
+}
+.details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.details-img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+}
+
+.details-info {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
 }
 
 /* Footer Styles */
@@ -244,6 +267,12 @@ body {
     margin: 0;
     padding: 0;
   }
+
+  .details-container {
+    grid-template-columns: 1fr;
+  }
+
+
     
   .footer {
     margin-top: 8%;

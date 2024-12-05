@@ -1,24 +1,9 @@
 'use client';
-// import GlassBoxImage from '@/components/productImages/GlassBox';
-// import StoneVaseImage from '@/components/productImages/StoneVase';
-// import WovenBasketsImage from '@/components/productImages/WovenBaskets';
-// import ClayVasesImage from '@/components/productImages/ClayVases';
+
 import Link from 'next/link';
 import { useEffect, useState } from "react";
 import Image from 'next/image';
-
-
-interface Product {
-  product_id: number;
-  product_name: string;
-  product_description: string;
-  product_price: number;
-  product_image: string;
-  artisan_id: number;
-  category_id: number;
-  artisan_firstname: string;
-  artisan_lastname: string;
-}
+import { Product } from '@/interfaces/Product';
 
 const fetchProducts = async (): Promise<Product[]> => {
   const response = await fetch("/api/products");
@@ -68,28 +53,18 @@ const ProductsPage = () => {
               {products.map((product) => (
               <li key={product.product_id} className='prod-card'>
                 <div className='prod-img'>
-                  <Link href={{
-                      pathname: "/product/details",
-                      query: { artisan_id: product.artisan_id, product_id: product.product_id },
-                    }}>
+                  <Link href={`/product/details/${product.product_id}`}>
                     <Image
                       src={`/images/${product.product_image}`}
                       alt= {`Product image of ${product.product_name}`}
-                      layout='responsive'
-                      width= {16}
-                      height= {9}
+                      width= {500}
+                      height= {500}
                       className='prod-img'
                     />
                   </Link>
                 </div>
                 <div className='prod-details'>
-                  <Link
-                    href={{
-                      pathname: "/product/details",
-                      query: { artisan_id: product.artisan_id, product_id: product.product_id },
-                    }}
-                    className="prod-name"
-                  >
+                  <Link href={`/product/details/${product.product_id}`}>
                     <h2>{product.product_name}</h2>
                   </Link>                  
                   <h3>{`$ ${product.product_price}`}</h3>
