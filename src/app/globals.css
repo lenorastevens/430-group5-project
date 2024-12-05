@@ -171,9 +171,11 @@ body {
 .prod-img {
   border-radius: 8px;
   max-height: 125px;
-  margin: 0;
-  padding: 0;
   justify-self: center;
+}
+.prod-name {
+  text-decoration: none;
+  color: #525C39;
 }
 
 /* Footer Styles */
