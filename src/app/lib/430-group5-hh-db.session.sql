@@ -14,4 +14,13 @@ INSERT INTO product (
         'glass_box.webp',
         2,
         4
+        ),
+        (
+            'Stylish Bracelet',
+            'This stylish gold bracelet is the way to go for a special event and it gives you the confidence.',
+            '14.67',
+            'Bracelet.webp',
+            '',
+            3,
+            2
         );
