@@ -105,20 +105,61 @@ body {
 
 
 /* Search bar and login button */
-.search-bar {
-  flex: 1;
-  margin-right: 20px;
-  padding: 1%;
-  border: none;
-  border-radius: 5px;
+
+.category-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--accent1-color);
+  border: 3px ridge var(--foreground);
+  border-radius: 4px;
+  padding: .5%;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.category-select {
+  margin-right: 1%;
+}
+
+.category-select select {
+  padding: .5%;
+  border: 2px solid var(--foreground);
+  border-radius: 4px;
+  background-color: white;
+}
+
+.search-input input {
+  padding: 1%;
+  width: 94%;
+  border: 2px solid var(--foreground);
+  border-radius: 4px;
+}
+
+.search-icon {
+  cursor: pointer;
+  padding: 1%;
+  background-color: var(--accent1-color);
+  border-radius: 4px;
+  margin-left: 2%;
+  align-items: center;
+
+}
+
+.search-icon:hover {
+  background-color: var(--accent2-color);
+}
 
 .login-button {
   background-color: var(--foreground);
   color: var(--background);
   border: none;
-  margin-right: 2%;
+  margin-right: 3%;
   padding: .5% 1%;
   cursor: pointer;
   border-radius: 5px;
@@ -163,6 +204,7 @@ body {
   text-align: center;
   border: 3px ridge #525C39;
   border-radius: 8px;
+  background-color: var(--accent1-color);
   box-shadow: 0 3px 6px 0 rgb(66, 50, 50);
   font-size: 12px;
   gap: 0;

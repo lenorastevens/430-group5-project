@@ -7,58 +7,82 @@ INSERT INTO product (
     artisan_id) 
     VALUES 
         (
-            'Floral Hanging Origami',
-            'This stunning hanging origami is made with premium decorative paper. Each piece is delicately folded to achieve an elegant, natural look. Perfect for home decor or special occasions, these hangings combine artistry with sustainability.',
-            12,
-            'decoration-paper.jpg',
+            'Origami Starry Scene',
+            'This paper-crafted diorama captures the magic of many stars, with intricate folds and detailed elements. Made entirely by hand, each piece is a unique representation of the artisan’s skill and creativity. A whimsical addition to any decor.',
+            45,
+            'paper-art.webp',
+            1,
+            6
+        ),
+        (
+            'Paper Safari Animals',
+            'Bring the wild into your home with this set of intricately folded paper animals. Featuring lions, elephants, and giraffes, each piece is carefully crafted from high-quality paper. Perfect for display or as unique gifts for nature lovers.',
+            30,
+            'paper-craft1.webp',
             1,
             5
         ),
         (
-            'Cozy Cat Display Baskets',
-            'These handwoven cat display baskets provide a snug and stylish place for your desk items. Crafted with durable natural fibers, they feature an open-weave design for breathability and aesthetic appeal. Each basket is a unique combination of practicality and artistry.',
-            75,
-            'display-baskets.jpg',
-            6,
-            16
-        ),
-        (
-            'Heritage Handwoven Cloth',
-            'This handwoven cloth is designed with vibrant patterns and traditional weaving techniques. Its soft, durable fabric makes it perfect for both everyday use and special occasions. Each thread tells a story of heritage and craftsmanship.',
-            65,
+            'Miniature Paper Cottage',
+            'This enchanting miniature paper house features detailed windows, doors, and garden accents. Handcrafted with precision, it captures the charm of a countryside cottage. A delightful piece for collectors and decor enthusiasts.',
+            70,
             'handwoven-cloth.jpg',
-            6,
-            15
+            1,
+            5
         ),
         (
-            'Traditional Indian Ring Set',
-            'This stunning set of rings showcases intricate designs inspired by Indian heritage. Each ring is meticulously crafted with engraved patterns and inlaid stones, blending tradition and elegance. Perfect for adding a touch of exotic charm to your jewelry collection.',
+            'Coastal Paper Art Display',
+            'This intricate papercrafted beach scene captures the tranquility of the coast with delicate folds and layered textures. From the waves to the seashells, each detail is lovingly crafted by hand. A stunning centerpiece for any room.',
             95,
             'indian-rings.jpg',
             3,
             9
         ),
         (
-            'Heavenly Jewelry Set',
-            'This elegant jewelry set includes a necklace and matching earrings inspired by celestial themes. Handcrafted with delicate metalwork and sparkling gemstones, it adds a sophisticated glow to any outfit. A timeless set that showcases expert craftsmanship.',
-            150,
-            'jewellery-brands.jpg',
+            'Ocean Elegance Pearl Set',
+            'This handcrafted set features a delicate pearl necklace and matching earrings, embodying timeless elegance. Each pearl is carefully selected and strung with precision, making it perfect for formal occasions. A classic design that exudes sophistication.',
+            200,
+            'pearls.webp',
             3,
             10
         ),
         (
-            'Rustic Clay Bowl',
-            'This hand-thrown clay bowl features an earthy glaze and a smooth finish, perfect for serving or display. The organic design reflects the artisan’s love for natural forms and textures. A versatile piece that blends beauty and functionality.',
-            40,
-            'kitchen.jpg',
-            4,
-            11
+            'Serenity Garden Statue',
+            'This hand-carved stone statue captures a serene figure perfect for enhancing your garden or patio. Each piece is carefully sculpted to reflect grace and tranquility. A durable and beautiful addition to your outdoor space.',
+            250,
+            'stone-craft.jpg',
+            5,
+            13
         ),
         (
-            'Vintage Charm Necklace Set',
-            'This hand-crafted necklace set features an intricate design inspired by vintage heirlooms. Its delicate chain and detailed pendant make it a striking addition to any collection. Each piece is carefully crafted to exude timeless elegance.',
-            120,
+            'Blooming Garden Quilt',
+            'This vibrant quilt features hand-stitched floral patterns inspired by a blooming garden. Made from soft, high-quality fabric, it provides warmth and beauty for your bedroom. A stunning example of artisan craftsmanship and creativity.',
+            185,
             'necklace.webp',
-            3,
-            9
+            6,
+            15
+        ),
+        (
+            'Textured Wall Mat Set',
+            ' This handwoven wall mat set adds texture and warmth to any space. Featuring a combination of neutral and vibrant threads, it’s perfect for showcasing artisan design. Each mat is a one-of-a-kind creation made with care.',
+            65,
+            'textile-art.jpg',
+            6,
+            16
+        ),
+        (
+            'Rustic Wooden Coffee Table',
+            'This handcrafted wooden coffee table combines natural beauty with practical design. The rich grain and smooth finish reflect the artisan’s attention to detail. A timeless piece that enhances any living space.',
+            300,
+            'wooden-table.jpg',
+            8,
+            19
+        ),
+        (
+            'Modern Woven Wall Art',
+            'This stunning piece of woven wall art features contemporary patterns and rich textures. Handcrafted from soft threads, it makes a bold statement in any room. A perfect blend of tradition and modern design.',
+            75,
+            'woven-textile.jpg',
+            6,
+            15
         );
