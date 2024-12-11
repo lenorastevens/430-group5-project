@@ -48,7 +48,7 @@ const ProductsPage = () => {
 
     return matchesCategory && matchesSearchTerm;
   });
-  
+
   return (
     <div className="main-body">
       <h1>Products Page</h1>
@@ -75,8 +75,8 @@ const ProductsPage = () => {
                 </Link>
               </div>
               <div className="prod-details">
-                <Link href={`/product/details/${product.product_id}`}>
-                  <h2>{product.product_name}</h2>
+                <Link className="prod-name" href={`/product/details/${product.product_id}`}>
+                  <h2 className="prod-name">{product.product_name}</h2>
                 </Link>
                 <h3>{`$ ${product.product_price}`}</h3>
                 <p>{product.product_description}</p>

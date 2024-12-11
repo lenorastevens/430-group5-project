@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { useFilter } from '@/context/FilterContext';
-import SearchBar from './SearchBar';
+// import SearchBar from './SearchBar';
 import LoginButton from './LoginButton';
+import { BsSearch } from "react-icons/bs";
 
 interface Category {
     category_id: number;
@@ -38,23 +39,48 @@ const TopSearch = () => {
     const categoryId = e.target.value ? Number(e.target.value) : ""; // Use an empty string for "All Categories"
     setSelectedCategory(categoryId);
   };
+
+  const handleSearchClick = () => {
+    // Logic to perform search action (e.g., redirect with search params)
+    console.log('Search triggered for:', searchTerm, selectedCategory);
+  };
+
   return (
     <header className="header">
       <div className="category-filter">
-        <SearchBar 
-          searchTerm={searchTerm}  // Pass searchTerm as a prop
-          onSearchChange={setSearchTerm}  // Pass setSearchTerm as a prop
-        />
-        <select id="category-select" value={selectedCategory || ''} onChange={handleCategoryChange} aria-label="Select a category">
-          <option value="">All Categories</option>
-          {/* Dynamically generate category options */}
-          {categories.map((category) => (
-            <option key={category.category_id} value={category.category_id}>
-              {category.category_name}
-            </option>
-          ))}
-        </select>
+        <div className="search-bar">
+          {/* Category dropdown */}
+          <div className="category-select">
+            <select id="category-select" value={selectedCategory || ''} onChange={handleCategoryChange} aria-label="Select a category">
+              <option value="">All Categories</option>
+              {categories.map((category) => (
+                <option key={category.category_id} value={category.category_id}>
+                  {category.category_name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Search input field */}
+          <div className="search-input">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search by keyword..."
+              aria-label="Search by Product or Artisan"
+            />
+          </div>
+
+          {/* Search icon */}
+          <div onClick={handleSearchClick}>
+            < BsSearch
+              className="search-icon"
+            />
+          </div>
+        </div>
       </div>
+
       <LoginButton/>
     </header>
   );
