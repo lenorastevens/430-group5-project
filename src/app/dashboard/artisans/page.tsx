@@ -10,6 +10,7 @@ interface Artisan {
   artisan_bio: string;
 }
 
+
 const fetchArtisans = async (): Promise<Artisan[]> => {
   const response = await fetch("/api/artisans");
   if (!response.ok) {
@@ -22,6 +23,10 @@ const ArtisansPage = () => {
   const [artisans, setArtisans] = useState<Artisan[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    document.title = "Artisans";
+  }, []);
 
   useEffect(() => {
     (async () => {

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Product } from '@/interfaces/Product';
+import { Product } from '@/app/ui/Product';
 
 const ProductDetailsPage = ({ params }: { params: Promise<{ product_id: string }> }) => {
   const [product, setProduct] = useState<Product | null>(null);

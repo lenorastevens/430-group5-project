@@ -1,19 +1,12 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { Product } from "@/interfaces/Product";
+import { Product } from "@/app/lib/definitions";
 import Link from 'next/link';
 import Image from 'next/image';
-import { useFilter } from '@/context/FilterContext'; 
+import { useFilter } from '@/app/ui/FilterContext'; 
+import fetchProducts from '@/app/lib/fetchProducts';
 
-const fetchProducts = async (): Promise<Product[]> => {
-  const response = await fetch("/api/products");
-  if (!response.ok) {
-    throw new Error("Failed to fetch products");
-  }
-  const data = await response.json();
-  return data.flat(); 
-};
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
