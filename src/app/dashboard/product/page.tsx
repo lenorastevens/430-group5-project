@@ -5,7 +5,14 @@ import { Product } from "@/app/lib/definitions";
 import Link from 'next/link';
 import Image from 'next/image';
 import { useFilter } from '@/app/ui/FilterContext'; 
-import fetchProducts from '@/app/lib/fetchProducts';
+
+const fetchProducts = async (): Promise<Product[]> => {
+  const response = await fetch('/api/products');
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+  return await response.json();
+};
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
