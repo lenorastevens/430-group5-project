@@ -73,7 +73,7 @@ const ProductsPage = () => {
               </div>
               <div className="text-center">
                 <Link
-                  href={`/product/details/${product.product_id}`}
+                  href={`/dashboard/product/${product.product_id}`}
                   className="text-secondary font-bold text-lg hover:underline"
                 >
                   {product.product_name}
