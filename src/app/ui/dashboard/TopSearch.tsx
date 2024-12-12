@@ -1,14 +1,10 @@
 'use client';
 
+import 'dotenv/config';
 import { useEffect, useState } from 'react';
 import { useFilter } from '@/app/ui/FilterContext';
 import { BsSearch } from "react-icons/bs";
-import fetchCategories from '@/app/lib/fetchCategories'; // Import the fetchCategories function
-
-interface Category {
-  category_id: number;
-  category_name: string;
-}
+import { Category } from '@/app/lib/definitions';
 
 const TopSearch = () => {
   const { searchTerm, setSearchTerm, selectedCategory, setSelectedCategory } = useFilter();  
@@ -18,17 +14,19 @@ const TopSearch = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        console.log("Fetching categories")
-        const data = await fetchCategories();
-        console.log("data fetched:", data)
-        setCategories(data); 
+        const response = await fetch('/api/categories');
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        const data: Category[] = await response.json();
+        setCategories(data);
       } catch (err) {
         console.error('Error fetching categories:', err);
       }
     };
-
+  
     getCategories();
-  }, []);  
+  }, []);
 
  
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

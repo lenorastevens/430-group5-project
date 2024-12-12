@@ -1,5 +1,9 @@
 import HeroImage from '@/app/ui/dashboard/Hero';
 import Description from '../ui/dashboard/Description';
+import 'dotenv/config';
+
+console.log("Testing environment variables...");
+console.log("POSTGRES_URL:", process.env.POSTGRES_URL);
 
 export default function DashboardPage() {
     return (
@@ -17,6 +21,7 @@ export default function DashboardPage() {
             <Description />
           </div>
         </div>
+        
       </div>
  );
  }

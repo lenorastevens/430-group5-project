@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import { createPool } from '@vercel/postgres';
 
 console.log("Initializing Database Pool...");
@@ -7,27 +9,32 @@ const pool = createPool({ connectionString: process.env.POSTGRES_URL });
 console.log("Pool created. Connection String:", process.env.POSTGRES_URL);
 
 export async function fetchSearchCategories() {
-    try {
-        const client = await pool.connect();
-        console.log("Database client connected.");
+  try {
+    console.log("Attempting to connect to the database...");
+    const client = await pool.connect();
+    console.log("Database client connected successfully.");
 
-        const { rows } = await client.query('SELECT * FROM category;');
-        client.release();
-        console.log("Fetched categories:", rows);
+    console.log("Executing query to fetch categories...");
+    const { rows } = await client.query('SELECT * FROM category;');
+    client.release();
+    console.log("Fetched categories successfully:", rows);
 
-        return rows;
-    } catch (error) {
-        console.error("Database Error:", error);
-        throw new Error("Failed to fetch categories.");
-    }
+    return rows;
+  } catch (error) {
+    console.error("Database Error (fetchSearchCategories):", error);
+    console.error("Error Stack Trace:", error);
+    throw new Error("Failed to fetch categories.");
+  }
 }
 
 export async function fetchProdData() {
   try {
+    console.log("Attempting to connect to the database...");
     const client = await pool.connect();
-    console.log("Database client connected.");
+    console.log("Database client connected successfully.");
 
-        const { rows } = await client.query(`
+    console.log("Executing query to fetch product data...");
+    const { rows } = await client.query(`
       SELECT 
         p.product_id, 
         p.product_name, 
@@ -40,24 +47,14 @@ export async function fetchProdData() {
       FROM public.product p 
       JOIN public.artisan a ON p.artisan_id = a.artisan_id 
       ORDER BY p.product_id ASC;
-      `);
-      client.release();
-          console.log("Fetched categories:", rows);
-      return rows;
+    `);
+    client.release();
+    console.log("Fetched product data successfully:", rows);
+
+    return rows;
   } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch product data.');
+    console.error("Database Error (fetchProdData):", error);
+    console.error("Error Stack Trace:", error);
+    throw new Error("Failed to fetch product data.");
   }
 }
-
-// export async function fetchSearchCategories() {
-//   try {
-//     const { rows } = await sql`
-//       SELECT * FROM category;
-//     `;
-//     return rows;
-//   } catch (error) {
-//     console.error('Database Error:', error);
-//     throw new Error('Failed to fetch categories.');
-//   }
-// }

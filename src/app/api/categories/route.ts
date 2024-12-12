@@ -1,18 +1,18 @@
- 
-import { NextApiRequest, NextApiResponse } from 'next';
-import { Pool } from 'pg';
+import { NextResponse } from 'next/server';
+import { createPool } from '@vercel/postgres';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+const pool = createPool({
+  connectionString: process.env.POSTGRES_URL,
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
   try {
-    const { rows } = await pool.query('SELECT * FROM category;');
-    
-    res.status(200).json(rows);
+    const client = await pool.connect();
+    const { rows } = await client.query('SELECT * FROM category');
+    client.release();
+    return NextResponse.json(rows);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to fetch products' });
+    console.error('Error fetching categories:', error);
+    return NextResponse.json({ error: 'Failed to fetch categories' }, { status: 500 });
   }
 }

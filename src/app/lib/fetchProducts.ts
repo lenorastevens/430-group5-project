@@ -1,14 +1,11 @@
 import { Product } from "@/app/lib/definitions";
-import { fetchProdData } from "./data";
 
 const fetchProducts = async (): Promise<Product[]> => {
-  const response = await fetchProdData(); 
-  console.log("Product response", response)
-  if (!Array.isArray(response)) {
-    throw new Error("Failed to fetch products");
+  const response = await fetch('/api/products');
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
   }
-
-  return response; 
+  return await response.json();
 };
 
 export default fetchProducts;

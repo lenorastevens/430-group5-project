@@ -1,17 +1,30 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { Pool } from 'pg';
+import { NextResponse } from 'next/server';
+import { createPool } from '@vercel/postgres';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+const pool = createPool({
+  connectionString: process.env.POSTGRES_URL,
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
   try {
-    const { rows } = await pool.query('SELECT p.product_id, p.product_name, p.product_description, p.product_price, p.product_image, p.category_id, a.artisan_firstname, a.artisan_lastname FROM public.product p JOIN public.artisan a ON p.artisan_id = a.artisan_id ORDER BY p.product_id ASC;');
-    
-    res.status(200).json(rows);
+    const client = await pool.connect();
+    const { rows } = await client.query(`
+      SELECT 
+        p.product_id,
+        p.product_name,
+        p.product_description,
+        p.product_price,
+        p.product_image,
+        p.category_id,
+        a.artisan_firstname,
+        a.artisan_lastname
+      FROM product p
+      INNER JOIN artisan a ON p.artisan_id = a.artisan_id
+    `);
+    client.release();
+    return NextResponse.json(rows);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to fetch products' });
+    console.error('Error fetching products:', error);
+    return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 });
   }
 }
