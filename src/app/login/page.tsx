@@ -2,20 +2,15 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/context/AuthContext';  
+import { useAuth } from '@/context/AuthContext';
 import './LoginPage.css';
-
-
-
-
-
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);  
-  const { setAuthenticated } = useAuth();  
+  const [isLoading, setIsLoading] = useState(false);
+  const { setAuthenticated } = useAuth();
   const router = useRouter();
 
   const validateForm = () => {
@@ -41,7 +36,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return; // Don't proceed with the submission if validation fails
     }
@@ -61,16 +56,16 @@ const LoginPage = () => {
 
       if (response.ok) {
         document.cookie = `token=${data.token}; path=/; max-age=3600`;
-        setAuthenticated(true);  
-        setIsLoading(false);  
-        router.push('/');  
+        setAuthenticated(true);
+        setIsLoading(false);
+        router.push('/');
       } else {
         setError(data.message || 'Something went wrong');
-        setIsLoading(false);  
+        setIsLoading(false);
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred.');
-      setIsLoading(false);  
+      setIsLoading(false);
     }
   };
 
@@ -101,7 +96,7 @@ const LoginPage = () => {
           />
         </div>
         {error && <p className="error-text">{error}</p>}
-        {isLoading && <p className="loading-text">Logging in...</p>} 
+        {isLoading && <p className="loading-text">Logging in...</p>}
         <div>
           <button
             type="submit"
@@ -113,7 +108,7 @@ const LoginPage = () => {
         </div>
       </form>
       <p className="register-link">
-        Don't have an account? <a href="/register">Register</a>
+        Don&apos;t have an account? <a href="/register">Register</a>
       </p>
     </div>
   );
