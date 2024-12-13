@@ -1,0 +1,117 @@
+/* Login container */
+.login-container {
+    background-color: #F1D5BD;
+    width: 300px;
+    height: auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;  
+  }
+  
+  /* Login form */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .form-group {
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+  
+  .form-group label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-input:focus {
+    border-color: #000000;
+  }
+  
+  .error-text {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+  
+  .loading-text {
+    color: #7f8c8d;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+  
+  .submit-button {
+    padding: 1rem;
+    background-color: #525C39;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:disabled {
+    background-color: #dfe4ea;
+  }
+  
+  .submit-button:hover:enabled {
+    background-color: #EAA037;
+  }
+  
+  .register-link {
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    color: #555;
+  }
+  
+  .register-link a {
+    color: #e74c3c;
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Media query for small screens (mobile devices) */
+  @media (max-width: 768px) {
+    .login-container {
+      width: 200px;  
+      margin: 20px auto;  
+      padding: 1.5rem;  
+    }
+  
+    .form-input {
+      padding: 0.5rem; 
+    }
+  
+    .submit-button {
+      padding: 0.75rem;  
+      font-size: 1rem;  
+    }
+  
+    .register-link {
+      font-size: 0.75rem;  
+    }
+  }
+  

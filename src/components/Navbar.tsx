@@ -1,31 +1,63 @@
-"use client";
+'use client';
 
-import { useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
 import LogoImage from '@/components/Logo';
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+
+const Navbar = () => {
+  const { isAuthenticated, setAuthenticated } = useAuth();
+
+  const logout = () => {
+    document.cookie = 'token=; Max-Age=0; path=/';  
+    setAuthenticated(false);
   };
 
   return (
-    <div  id="left-nav">
+    <div id="left-nav">
       <nav className="left-nav">
-        <button className="hamburger" onClick={toggleMenu}>
-          ☰
-        </button>
         <LogoImage />
-
-        <ul className={`menu ${isOpen ? 'open' : ''}`}>
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/users">User Profile</Link></li>
-          <li><Link href="/artisans">Artisans</Link></li>
-          <li><Link href="/product">Products</Link></li>
+        <ul>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          {isAuthenticated && (
+            <>
+              <li>
+                <Link href="/users">User Profile</Link>
+              </li>
+              <li>
+                <Link href="/artisans">Artisans</Link>
+              </li>
+              <li>
+                <Link href="/product">Products</Link>
+              </li>
+              <li>
+                <button className="logout-button" onClick={logout}>
+                  Logout
+                </button>
+              </li>
+            </>
+          )}
+          {!isAuthenticated && (
+            <li>
+              <Link href="/login">Login</Link>
+            </li>
+          )}
         </ul>
       </nav>
+      <style jsx>{`
+        .logout-button {
+          border: none;
+          cursor: pointer;
+          font-size: 20px;
+        }
+
+        .logout-button:hover {
+          color: #EAA037;
+        }
+      `}</style>
     </div>
   );
 };

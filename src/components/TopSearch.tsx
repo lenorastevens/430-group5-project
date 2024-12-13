@@ -1,5 +1,5 @@
 import SearchBar from './SearchBar';
-import LoginButton from './LoginButton';
+import LoginButton from './welcome';
 
 const TopSearch = () => {
     return(
