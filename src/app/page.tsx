@@ -27,8 +27,8 @@ export default function Page () {
         <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
           <Image
             src="/hero.jpg"
-            width={1000}
-            height={760}
+            width={763}
+            height={763}
             className="hidden md:block"
             alt="Screenshots of the dashboard project showing desktop version"
           />

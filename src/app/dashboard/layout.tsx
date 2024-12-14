@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import Navbar from '@/app/ui/dashboard/Navbar';
 import TopSearch from "../ui/dashboard/TopSearch";
-import Footer from "@/app/ui/dashboard/Footer"
+import Footer from "@/app/ui/dashboard/Footer";
+import { FilterProvider } from '@/app/ui/FilterContext';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className=" grid grid-rows-[auto_1fr] grid-cols-1 md:grid-rows-1 md:grid-cols-[auto_1fr]">
+      <FilterProvider>
       <div className="row-span-1 col-span-1 md:col-span-2 bg-secondary">
         <TopSearch />
       </div>
@@ -26,6 +28,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="row-span-1 col-span-1 py-5 md:col-span-2 text-primary bg-secondary">
         <Footer />
       </div>
+      </FilterProvider>
     </div>
   );
 }

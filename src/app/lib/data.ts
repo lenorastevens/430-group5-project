@@ -1,12 +1,40 @@
-// import 'dotenv/config';
+import 'dotenv/config';
+import { sql } from '@vercel/postgres';
+import { Review } from '@/app/lib/definitions';
 
-// import { createPool } from '@vercel/postgres';
+export async function fetchReview() {
+    try {
+        console.log('Fetching revenue data...');
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        const data = await sql<Review>`SELECT * FROM review`;
+        console.log('Data fetch completed after 3 seconds.');
 
-// console.log("Initializing Database Pool...");
+        return data.rows;
+    } catch (error) {
+        console.error('Database Error: ', error);
+        throw new Error('Failed to fetch review data.');
+    }
 
-// const pool = createPool({ connectionString: process.env.POSTGRES_URL });
+}
 
-// console.log("Pool created. Connection String:", process.env.POSTGRES_URL);
+export async function createUser(user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }) {
+    try{
+    await sql`
+      INSERT INTO users (firstname, lastname, email, password)
+      VALUES (${user.firstName}, ${user.lastName}, ${user.email}, ${user.password})
+    `;
+    return true;
+
+    } catch (error) {
+        console.error('Failed to create user:', error);
+        return false;
+    }
+  }
 
 // export async function fetchSearchCategories() {
 //   try {

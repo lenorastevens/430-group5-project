@@ -29,6 +29,6 @@
     "**/*.tsx", 
     ".next/types/**/*.ts", 
     "src/app/details", 
-    "src/app/lib/definitions.d.ts"],
+    "src/app/lib/definitions.ts"],
   "exclude": ["node_modules"]
 }

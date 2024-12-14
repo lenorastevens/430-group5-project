@@ -1,7 +1,6 @@
 import '@/app/ui/global.css';
 import { epilogue } from './ui/fonts';
 import { Metadata } from 'next';
-import { FilterProvider } from './ui/FilterContext';
 
 export const metadata: Metadata = {
   title: {
@@ -14,9 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en"> 
-    <FilterProvider     >
       <body className={`${epilogue.className} antialiased`}>{children}</body>
-      </FilterProvider>
     </html>
   );
 }
