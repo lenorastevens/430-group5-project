@@ -4,7 +4,7 @@ export type User = {
     lastname: string,
     email: string;
     password: string;
-    type: string
+    account_type: string
 };
 
 export type Product = {

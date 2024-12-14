@@ -10,13 +10,15 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@tailwindcss/forms": "^0.5.9",
     "@vercel/postgres": "^0.10.0",
+    "autoprefixer": "^10.4.20",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "heroicons": "^2.2.0",
     "next": "15.1.0",
-    "next-auth": "4.24.11",
+    "next-auth": "5.0.0-beta.25",
     "pg": "^8.13.1",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
@@ -27,13 +29,20 @@
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.17.10",
     "@types/pg": "^8.11.10",
-    "@types/react": "^18.3.16",
-    "@types/react-dom": "^18.3.5",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "eslint": "^8.57.1",
     "eslint-config-next": "15.0.3",
+    "hereby": "^1.10.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+    }
   },
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }
