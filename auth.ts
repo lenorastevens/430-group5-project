@@ -4,12 +4,12 @@ import { authConfig } from './auth.config';
 import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import type { User } from '@/app/lib/definitions';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
  
 async function getUser(email: string): Promise<User | undefined> {
   try {
     const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
-    if (user.rows.length === 0) return undefined; 
+    if (user.rows.length === 0) return undefined;
     return user.rows[0];
   } catch (error) {
     console.error('Failed to fetch user:', error);
@@ -21,6 +21,7 @@ export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
+      name: 'credentials',
       async authorize(credentials) {
         console.log("Authorize function called with credentials:", credentials);
 
@@ -39,8 +40,7 @@ export const { auth, signIn, signOut } = NextAuth({
               console.log({ id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, account_type: user.account_type })
               return { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, account_type: user.account_type };
             }
-          }
-   
+        }   
         console.log('Invalid credentials');
         return null;
       },

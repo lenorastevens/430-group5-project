@@ -2,12 +2,16 @@ import type { NextAuthConfig } from 'next-auth';
  
 export const authConfig = {
   pages: {
-    signIn: '/login',
+    signIn: '/dashboard',
   },
   session: {
     strategy: 'jwt', // Use JWT for session
   },  
   callbacks: {
+    async redirect({  }) {
+      return '/dashboard';
+    
+    },
     async session({ session, user }) {
       console.log('Session callback triggered', session, user);
       if (user) {

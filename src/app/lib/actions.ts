@@ -5,7 +5,8 @@ import { AuthError} from 'next-auth';
 import { z } from 'zod';
 import { redirect } from 'next/navigation'; 
 import { createUser } from '@/app/lib/data'; 
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
+import { signOut } from '../../../auth';
 
  
 // ...
@@ -21,11 +22,13 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
-    console.log("FormData before signIn:", formData);
-    const result = await signIn('credentials', formData);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const result = await signIn('credentials', {email, password});
     console.log("signIn result:", result);
 
   } catch (error) {
+  console.log("WHEN AUTHENTICATING WE HAD AN ERROR", error)
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
@@ -53,10 +56,10 @@ export async function register(
     try {
         // Validate the incoming form data
         const parsedData = registerSchema.parse({
-        firstName: formData.get('firstName'),
-        lastName: formData.get('lastName'),
-        email: formData.get('email'),
-        password: formData.get('password'),
+          firstName: formData.get('firstName'),
+          lastName: formData.get('lastName'),
+          email: formData.get('email'),
+          password: formData.get('password'),
         });
 
         // Hash the password before storing it
@@ -64,21 +67,23 @@ export async function register(
 
         // Insert the user into the database
         const userCreated = await createUser({
-        firstName: parsedData.firstName,
-        lastName: parsedData.lastName,
-        email: parsedData.email,
-        password: hashedPassword,
+          firstName: parsedData.firstName,
+          lastName: parsedData.lastName,
+          email: parsedData.email,
+          password: hashedPassword,
         });
-        console.log ('Successfully registered: ', userCreated)
-        
-        redirect('/login');
-
+        console.log ('Successfully registered: ', userCreated)       
     } catch (error) {
         if (error instanceof z.ZodError) {
-        return `Validation failed: ${error.errors.map(e => e.message).join(', ')}`;
+          return `Validation failed: ${error.errors.map(e => e.message).join(', ')}`;
         }
         return 'Something went wrong during registration.';
     }
+    redirect('/login');
 }
 
+export async function handleSignOut() {
+  console.log("Signing Out")
+  await signOut();
+}
 

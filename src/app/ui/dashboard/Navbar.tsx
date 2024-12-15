@@ -4,11 +4,16 @@ import Link from 'next/link';
 import NavLinks from '@/app/ui/dashboard/NavLinks';
 import HHLogo from '@/app/ui/hh-logo';
 import { PowerIcon, Bars3Icon } from '@heroicons/react/24/outline';
-import { signOut } from '../../../../auth';
-
+import { useActionState } from 'react';
+import { handleSignOut } from '@/app/lib/actions';
 
 export default function SideNav() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar visibility
+
+  const [_message, formAction] = useActionState(handleSignOut, undefined)
+
+  console.log(_message);
+  console.log("Form Action: ", formAction)
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev); // Toggle sidebar visibility
@@ -40,13 +45,9 @@ export default function SideNav() {
         <NavLinks />
 
         {/* Sign-out button */}
-        <form 
-          action={async () => {
-            'use server';
-            await signOut();
-          }}
-        >
-          <button type="button"
+        <form action={formAction}>
+          <button
+            type="submit"
             className="flex items-left justify-left gap-3 p-2 text-sm font-medium text-accent3 rounded-md bg-accent1 hover:bg-accent2 md:w-full"
           >
             <PowerIcon className="w-5 h-5" />
