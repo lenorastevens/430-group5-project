@@ -1,7 +1,7 @@
 'use server';
  
 import { signIn } from '../../../auth';
-// import { AuthError} from 'next-auth';
+import { AuthError} from 'next-auth';
 import { z } from 'zod';
 import { redirect } from 'next/navigation'; 
 import { createUser } from '@/app/lib/data'; 
@@ -21,18 +21,20 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
+    console.log("FormData before signIn:", formData);
     const result = await signIn('credentials', formData);
     console.log("signIn result:", result);
 
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      // Handle error based on message or type
-      if (error.message.includes('CredentialsSignin')) {
-        return 'Invalid credentials.';
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
       }
-      return 'Something went wrong.';
     }
-    throw error; 
+    throw error;
   }
 }
 

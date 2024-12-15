@@ -15,6 +15,10 @@ export default {
         accent2: "#EAA037",
         accent3: "#000000"
       },
+      fontFamily: {
+        sancreek: ['"Sancreek"', 'serif'],
+        epilogue: ['"Epilogue"', 'serif']
+      }
     },
   },
   plugins: [],

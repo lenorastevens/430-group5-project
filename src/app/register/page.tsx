@@ -12,7 +12,7 @@ export default function RegisterPage() {
       <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32">
         <div className="flex h-40 w-full items-center justify-center rounded-lg bg-accent1
          p-3 md:h-36">
-          <div className="w-32 text-white md:w-36">
+          <div className="w-20 text-white md:w-34">
             <HHLogo />
           </div>
         </div>

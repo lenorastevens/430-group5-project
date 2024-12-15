@@ -9,11 +9,9 @@ export const authConfig = {
   },  
   callbacks: {
     async session({ session, user }) {
-      // Ensure that the user object is available in the session
+      console.log('Session callback triggered', session, user);
       if (user) {
-        console.log("Session callback: ", session, user);  // Log user and session
-
-        session.user = user;  // Attach the user to the session
+        session.user = user; // Attach the user to the session
       }
       return session;
     },
@@ -32,6 +30,7 @@ export const authConfig = {
         return false; // Redirect unauthenticated users to login page
       } else if (isLoggedIn) {
         console.log("User is logged in, redirecting to dashboard");
+        
         return Response.redirect(new URL('/dashboard', nextUrl));
       }
 
