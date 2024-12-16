@@ -14,6 +14,10 @@ const ProductDetailsPage = ({ params }: { params: Promise<{ product_id: string }
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    document.title = "Product Details";
+  }, []);
+
+  useEffect(() => {
     if (product_id) {
       const fetchProductDetails = async () => {
         try {
