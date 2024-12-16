@@ -58,6 +58,7 @@ const ArtisansPage = () => {
               </thead>
               <tbody>
                 {artisans.map((artisan) => (
+                  // *****INCLUDE THE ONCLICK IN THE NEXT LINE
                   <tr key={artisan.artisan_id} className="hover:bg-[#805AD5]/10">
                     <td className="p-3 border-2 border-ridge border-[#EAA037]">{artisan.artisan_firstname}</td>
                     <td className="p-3 border-2 border-ridge border-[#EAA037]">{artisan.artisan_lastname}</td>
