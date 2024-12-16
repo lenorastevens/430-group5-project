@@ -12,10 +12,26 @@ export const authConfig = {
       return '/dashboard';
     
     },
-    async session({ session, user }) {
-      console.log('Session callback triggered', session, user);
+    async jwt({ token, user }) {
       if (user) {
-        session.user = user; // Attach the user to the session
+        token.id = String(user.id); // Convert id to string
+        token.firstname = user.firstname;
+        token.lastname = user.lastname;
+        token.email = user.email;
+        token.account_type = user.account_type;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user = {
+          id: token.id as string, // Ensure id is treated as string
+          firstname: token.firstname as string,
+          lastname: token.lastname as string,
+          email: token.email as string,
+          account_type: token.account_type as string,
+          emailVerified: null, // Set this to null or an appropriate value
+        };
       }
       return session;
     },

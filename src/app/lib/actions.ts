@@ -24,8 +24,8 @@ export async function authenticate(
   try {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
-    const result = await signIn('credentials', {email, password});
-    console.log("signIn result:", result);
+    await signIn('credentials', {email, password});
+    
 
   } catch (error) {
   console.log("WHEN AUTHENTICATING WE HAD AN ERROR", error)
