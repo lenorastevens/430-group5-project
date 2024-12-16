@@ -59,7 +59,12 @@ const ArtisansPage = () => {
               <tbody>
                 {artisans.map((artisan) => (
                   // *****INCLUDE THE ONCLICK IN THE NEXT LINE
-                  <tr key={artisan.artisan_id} className="hover:bg-[#805AD5]/10">
+                  <tr 
+                  key={artisan.artisan_id} 
+                  className="hover:bg-[#805AD5]/10"
+                  onClick={() => window.location.href = `/dashboard/artisans/${artisan.artisan_id}`}
+                  >
+
                     <td className="p-3 border-2 border-ridge border-[#EAA037]">{artisan.artisan_firstname}</td>
                     <td className="p-3 border-2 border-ridge border-[#EAA037]">{artisan.artisan_lastname}</td>
                     <td className="p-3 border-2 border-ridge border-[#EAA037]">{artisan.artisan_bio}</td>
