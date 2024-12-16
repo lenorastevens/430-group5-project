@@ -36,6 +36,25 @@ export async function createUser(user: {
     }
   }
 
+export async function addReview(review: {
+    review_comment: string;
+    review_rating: number;
+    user_id: number;
+    product_id: number;
+}) {
+  try{
+  await sql`
+    INSERT INTO review (review_comment, review_rating, user_id, product_id)
+    VALUES (${review.review_comment}, ${review.review_rating}, ${review.user_id}, ${review.product_id})
+  `;
+  return true;
+
+  } catch (error) {
+      console.error('Failed to create review:', error);
+      return false;
+  }
+}
+
 // export async function fetchSearchCategories() {
 //   try {
 //     console.log("Attempting to connect to the database...");
