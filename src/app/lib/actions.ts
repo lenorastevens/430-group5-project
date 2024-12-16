@@ -4,7 +4,7 @@ import { signIn } from '../../../auth';
 import { AuthError} from 'next-auth';
 import { z } from 'zod';
 import { redirect } from 'next/navigation'; 
-import { createUser } from '@/app/lib/data'; 
+import { createUser, addReview } from '@/app/lib/data'; 
 import bcrypt from 'bcryptjs';
 import { signOut } from '../../../auth';
 
@@ -41,6 +41,10 @@ export async function authenticate(
   }
 }
 
+export async function handleSignOut() {
+  console.log("Signing Out")
+  await signOut();
+}
 
 const registerSchema = z.object({
     firstName: z.string().min(1, 'First name is required'),
@@ -82,8 +86,39 @@ export async function register(
     redirect('/login');
 }
 
-export async function handleSignOut() {
-  console.log("Signing Out")
-  await signOut();
-}
+const reviewSchema = z.object({
+  review_comment: z.string().min(1, 'Comment is required'),
+  review_rating: z.number().min(1, 'Rating is required'),
+  user_id: z.number(),
+  product_id: z.number(),
+});
 
+export async function review(
+  prevState: string | undefined,
+  formData: FormData,
+) {
+  const product_id = formData.get('product_id');
+  try {
+    const parsedData  = reviewSchema.parse({
+      review_comment: formData.get('review_comment'),
+      review_rating: formData.get('review_rating'),
+      user_id: formData.get('user_id'),
+      product_id: formData.get('product_id')
+    })
+    // Insert the user into the database
+    const reviewAdded = await addReview({
+      review_comment: parsedData.review_comment,
+      review_rating: parsedData.review_rating,
+      user_id: parsedData.user_id,
+      product_id: parsedData.product_id,
+    });
+    console.log ('Successfully registered: ', reviewAdded)       
+} catch (error) {
+    if (error instanceof z.ZodError) {
+      return `Validation failed: ${error.errors.map(e => e.message).join(', ')}`;
+    }
+    return 'Something went wrong during registration.';
+}
+redirect(`/dashboard/product/${product_id}`);
+}
+ 

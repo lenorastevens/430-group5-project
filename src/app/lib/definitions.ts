@@ -24,14 +24,15 @@ export type Category = {
     category_name: string;
 };
 
-export type Account = {
-    account_id: string;
-    account_firstname: string;
-    account_lastname: string;
-    account_email: string;
-    account_password: string;
-    account_type: string;
-};
+// Account Table is replaced with Users table and User type
+// export type Account = {
+//     account_id: string;
+//     account_firstname: string;
+//     account_lastname: string;
+//     account_email: string;
+//     account_password: string;
+//     account_type: string;
+// };
 
 export type Artisan = {
     artisan_id: number;
@@ -45,6 +46,6 @@ export type Review = {
     review_comment: string;
     review_rating: number;
     review_date: Date;
-    account_id: number;
+    user_id: number;
     product_id: number;
 };
