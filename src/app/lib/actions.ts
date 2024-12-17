@@ -1,15 +1,12 @@
 'use server';
  
 import { signIn } from '../../../auth';
-import { AuthError} from 'next-auth';
 import { z } from 'zod';
 import { redirect } from 'next/navigation'; 
 import { createUser, addReview } from '@/app/lib/data'; 
 import bcrypt from 'bcryptjs';
 import { signOut } from '../../../auth';
 
- 
-// ...
 
 export async function hashPassword(password: string): Promise<string> {
     const saltRounds = 10;
@@ -21,24 +18,12 @@ export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
 ) {
-  try {
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-    await signIn('credentials', {email, password});
+  
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
+  await signIn('credentials', {email, password});
     
-
-  } catch (error) {
-  console.log("WHEN AUTHENTICATING WE HAD AN ERROR", error)
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case 'CredentialsSignin':
-          return 'Invalid credentials.';
-        default:
-          return 'Something went wrong.';
-      }
-    }
-    throw error;
-  }
+  redirect('/dashboard');
 }
 
 export async function handleSignOut() {
@@ -89,8 +74,7 @@ export async function register(
 const reviewSchema = z.object({
   review_comment: z.string().min(1, 'Comment is required'),
   review_rating: z.number().min(1, 'Rating is required'),
-  user_id: z.number(),
-  product_id: z.number(),
+  product_id: z.string(),
 });
 
 export async function review(
@@ -98,18 +82,18 @@ export async function review(
   formData: FormData,
 ) {
   const product_id = formData.get('product_id');
+  const reviewRating = Number(formData.get('review_rating'));
+ 
   try {
     const parsedData  = reviewSchema.parse({
       review_comment: formData.get('review_comment'),
-      review_rating: formData.get('review_rating'),
-      user_id: formData.get('user_id'),
+      review_rating: reviewRating,
       product_id: formData.get('product_id')
     })
     // Insert the user into the database
     const reviewAdded = await addReview({
       review_comment: parsedData.review_comment,
       review_rating: parsedData.review_rating,
-      user_id: parsedData.user_id,
       product_id: parsedData.product_id,
     });
     console.log ('Successfully registered: ', reviewAdded)       

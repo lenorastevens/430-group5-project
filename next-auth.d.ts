@@ -6,12 +6,19 @@ declare module 'next-auth' {
     firstname: string;
     lastname: string;
     email: string;
-    account_type: string;    emailVerified: Date | null; // Add this property
-
+    account_type: string;    
+    emailVerified: Date | null; 
   }
 
   interface Session {
-    user: User;
+    user: {
+      id: string;
+      firstname: string;
+      lastname: string;
+      email: string;
+      account_type: string;
+      emailVerified: Date | null;
+    };
   }
 
   interface JWT {
@@ -20,6 +27,7 @@ declare module 'next-auth' {
     lastname: string;
     email: string;
     account_type: string;
+    emailVerified: Date | null;
   }
 
 }

@@ -38,7 +38,7 @@ export const { auth, signIn, signOut } = NextAuth({
             if (passwordsMatch) {
               console.log("Did passwords match? ", passwordsMatch)
               console.log({ id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, account_type: user.account_type })
-              return { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, account_type: user.account_type };
+              return { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, account_type: user.account_type, emailVerified: user.emailVerified};
             }
         }   
         console.log('Invalid credentials');

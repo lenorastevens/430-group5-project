@@ -15,7 +15,20 @@ export async function GET(request: Request) {
   try {
     const client = await pool.connect();
     const { rows } = await client.query(
-      `SELECT * FROM product WHERE product_id = $1`,
+      `
+      SELECT 
+        p.product_id,
+        p.product_name,
+        p.product_description,
+        p.product_price,
+        p.product_image,
+        p.category_id,
+        a.artisan_firstname,
+        a.artisan_lastname
+      FROM product p
+      INNER JOIN artisan a ON p.artisan_id = a.artisan_id
+      WHERE product_id = $1
+      `,
       [productId]
     );
     return new Response(JSON.stringify(rows), {

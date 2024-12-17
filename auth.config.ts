@@ -19,6 +19,7 @@ export const authConfig = {
         token.lastname = user.lastname;
         token.email = user.email;
         token.account_type = user.account_type;
+        token.emailVerified = user.emailVerified;
       }
       return token;
     },
