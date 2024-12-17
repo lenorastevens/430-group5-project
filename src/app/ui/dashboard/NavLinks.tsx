@@ -5,7 +5,7 @@ import {
   HomeModernIcon,
   ScissorsIcon,
   UserCircleIcon,
-  StarIcon,
+  // StarIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -18,7 +18,7 @@ const links = [
   { name: 'User Profile', href: '/dashboard/users', icon: UserCircleIcon },
   { name: 'Artisans', href: '/dashboard/artisans', icon: UserGroupIcon },
   { name: 'Products', href: '/dashboard/product', icon: ScissorsIcon},
-  { name: 'Reviews', href: '/dashboard/reviews', icon: StarIcon }
+  // { name: 'Reviews', href: '/dashboard/reviews', icon: StarIcon }
 ];
 
 export default function NavLinks() {
@@ -33,14 +33,14 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-accent1 p-3 text-sm font-medium hover:bg-accent2 hover:text-accent3 md:flex-none md:justify-start md:p-2 md:px-3',
+              'flex items-center gap-2 rounded-md bg-accent1 p-3 text-sm font-medium hover:bg-accent2 hover:text-accent3 md:flex-none md:justify-start md:p-2 md:px-3', // Adjusted to remove center alignment
               {
                 'bg-accent1 text-accent3': pathname === link.href,
               },
-            )} 
+            )}
           >
             <LinkIcon className="w-6" />
-            <p className="hidden md:block">{link.name}</p>
+            <p className="md:block">{link.name}</p>
           </Link>
         );
       })}

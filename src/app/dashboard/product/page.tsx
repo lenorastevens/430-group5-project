@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Product } from "@/app/lib/definitions";
 import Link from 'next/link';
 import Image from 'next/image';
-import { useFilter } from '@/app/ui/FilterContext'; 
+import { useFilter } from '@/app/ui/FilterContext';
 
 const fetchProducts = async (): Promise<Product[]> => {
   const response = await fetch('/api/products');
@@ -18,7 +18,7 @@ const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  
+
   const { selectedCategory, searchTerm } = useFilter();
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const ProductsPage = () => {
               className="bg-accent1 border-4 border-secondary rounded-lg shadow-md p-4 flex flex-col items-center"
             >
               <div className="flex justify-center items-center overflow-hidden rounded-lg mb-4">
-                <Link href={`/product/details/${product.product_id}`}>
+                <Link href={`/dashboard/product/${product.product_id}`}>
                   <Image
                     src={`/images/${product.product_image}`}
                     alt={`Product image of ${product.product_name}`}
@@ -86,7 +86,8 @@ const ProductsPage = () => {
                   {product.product_name}
                 </Link>
                 <h3 className="text-accent2 font-semibold text-xl mt-2">{`$${product.product_price}`}</h3>
-                <p className="text-secondary mt-2">{product.product_description}</p>
+                {/* Hidden on small screens, visible on larger screens */}
+                <p className="text-secondary mt-2 hidden md:block">{product.product_description}</p>
                 <p className="text-secondary mt-1">{`${product.artisan_firstname} ${product.artisan_lastname}`}</p>
               </div>
             </li>

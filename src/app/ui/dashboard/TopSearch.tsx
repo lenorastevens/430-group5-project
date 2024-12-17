@@ -7,10 +7,9 @@ import { BsSearch } from "react-icons/bs";
 import { Category } from '@/app/lib/definitions';
 
 const TopSearch = () => {
-  const { searchTerm, setSearchTerm, selectedCategory, setSelectedCategory } = useFilter();  
-  const [categories, setCategories] = useState<Category[]>([]); 
+  const { searchTerm, setSearchTerm, selectedCategory, setSelectedCategory } = useFilter();
+  const [categories, setCategories] = useState<Category[]>([]);
 
-  
   useEffect(() => {
     const getCategories = async () => {
       try {
@@ -24,13 +23,12 @@ const TopSearch = () => {
         console.error('Error fetching categories:', err);
       }
     };
-  
+
     getCategories();
   }, []);
 
- 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const categoryId = e.target.value ? Number(e.target.value) : ""; 
+    const categoryId = e.target.value ? Number(e.target.value) : "";
     setSelectedCategory(categoryId);
   };
 
@@ -39,15 +37,16 @@ const TopSearch = () => {
   };
 
   return (
-    <header className="flex justify-between items-center p-4">
-      <div className="flex items-center justify-between space-x-4 w-full bg-accent1 border-4 border-foreground rounded-md p-2">
+    <header className="p-4">
+      <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 w-full bg-accent1 border-4 border-foreground rounded-md p-2">
+        
         {/* Category dropdown */}
-        <div className="mr-4">
+        <div className="w-full md:w-1/4">
           <select
             id="category-select"
             value={selectedCategory || ''}
             onChange={handleCategoryChange}
-            className="p-2 border-2 border-foreground rounded-md bg-white"
+            className="p-2 w-full border-2 border-foreground rounded-md bg-white"
             aria-label="Select a category"
           >
             <option value="">All Categories</option>
@@ -60,24 +59,25 @@ const TopSearch = () => {
         </div>
 
         {/* Search input field */}
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search by keyword..."
-          className="p-2 w-3/4 border-2 border-foreground rounded-md"
-          aria-label="Search by Product or Artisan"
-        />
+        <div className="w-full flex-grow">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search by keyword..."
+            className="p-2 w-full border-2 border-foreground rounded-md"
+            aria-label="Search by Product or Artisan"
+          />
+        </div>
 
         {/* Search icon */}
         <div
           onClick={handleSearchClick}
-          className="p-2 bg-accent1 text-secondary hover:bg-accent2 rounded-md ml-2"
+          className="p-2 bg-accent1 text-secondary hover:bg-accent2 rounded-md cursor-pointer"
         >
-          <BsSearch className="w-5 h-5" />
+          <BsSearch className="w-6 h-6" />
         </div>
       </div>
-
     </header>
   );
 };

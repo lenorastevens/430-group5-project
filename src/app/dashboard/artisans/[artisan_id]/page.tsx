@@ -86,7 +86,7 @@ const ArtisanProfilePage = ({ params }: { params: Promise<{ artisan_id: string }
 
       {!loading && !error && products.length > 0 && (
           <div className="product-details text-center">  {/* Center the entire content */}
-            <h1 className="text-3xl font-semibold mb-4 text-center">{artisan.artisan_firstname} {artisan.artisan_lastname}</h1>
+            <h1 className="text-4xl text-secondary font-sancreek font-semibold mb-4 text-center">{artisan.artisan_firstname} {artisan.artisan_lastname}</h1>
             <div className="details-container grid grid-cols-1 gap-8 mx-auto">
               <h2 className="text-xl font-semibold mb-2">{artisan.artisan_bio}</h2>            
             </div>
