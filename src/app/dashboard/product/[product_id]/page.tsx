@@ -103,7 +103,8 @@ const ProductDetailsPage = ({ params }: { params: Promise<{ product_id: string }
                   className="bg-accent1 p-4 flex flex-col"
                 >
                   <p><strong>Review #{index + 1}: </strong></p>
-                  <p><strong> Rating:</strong> {review.review_rating} <strong> Comment:</strong> {review.review_comment}</p>
+                  <p><strong> Rating:</strong> {review.review_rating}</p>
+                  <p><strong> Comment:</strong> {review.review_comment}</p>
                 </li>
               ))}
             </ul>

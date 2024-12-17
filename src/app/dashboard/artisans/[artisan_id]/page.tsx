@@ -114,7 +114,7 @@ const ArtisanProfilePage = ({ params }: { params: Promise<{ artisan_id: string }
                     >
                       {product.product_name}
                     </Link>
-                    <h3 className="text-accent2 font-semibold text-xl mt-2">{`$${product.product_price}`}</h3>
+                    <h3 className="text-secondary font-semibold text-xl mt-2">{`$${product.product_price}`}</h3>
                     <p className="text-secondary mt-2">{product.product_description}</p>
                   </div>
                 </li>
