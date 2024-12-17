@@ -20,11 +20,25 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [priceFilter, setPriceFilter] = useState<string>('all'); // State for price filter
 
-  const { selectedCategory, searchTerm } = useFilter();
+  const { selectedCategory, searchTerm, setSelectedCategory, setSearchTerm } = useFilter();
 
   useEffect(() => {
     document.title = "Products";
-  }, []);
+
+    const params = new URLSearchParams(window.location.search);
+    const querySearchTerm = params.get('searchTerm');
+    const queryCategory = params.get('category');
+  
+    
+    // Set the state based on query params if available
+    if (querySearchTerm && typeof querySearchTerm === 'string') {
+      setSearchTerm(querySearchTerm);
+    }
+
+    if (queryCategory) {
+      setSelectedCategory(Number(queryCategory) || ''); 
+    }
+  }, [setSearchTerm, setSelectedCategory]);
 
   useEffect(() => {
     (async () => {
@@ -41,11 +55,11 @@ const ProductsPage = () => {
 
   // Filter products based on category, search term, and price
   const filteredProducts = products.filter((product) => {
-    const matchesCategory = selectedCategory === '' || product.category_id === selectedCategory;
-    const matchesSearchTerm =
-      product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.artisan_firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.artisan_lastname.toLowerCase().includes(searchTerm.toLowerCase());
+  const matchesCategory = selectedCategory === '' || product.category_id === selectedCategory;
+  const matchesSearchTerm =
+    product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    product.artisan_firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    product.artisan_lastname.toLowerCase().includes(searchTerm.toLowerCase());
 
     let matchesPrice = true;
     if (priceFilter === 'below25') {

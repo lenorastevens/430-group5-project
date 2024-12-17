@@ -1,22 +1,27 @@
+// TopSearch component
 'use client';
 
-import 'dotenv/config';
 import { useEffect, useState } from 'react';
 import { useFilter } from '@/app/ui/FilterContext';
-import { BsSearch } from "react-icons/bs";
+import { BsSearch } from 'react-icons/bs';
 import { Category } from '@/app/lib/definitions';
+import { useRouter } from 'next/navigation'; // Used for navigation
 
 const TopSearch = () => {
   const { searchTerm, setSearchTerm, selectedCategory, setSelectedCategory } = useFilter();
   const [categories, setCategories] = useState<Category[]>([]);
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsClient(true); // Set client-side flag once the component mounts
+  }, []);
 
   useEffect(() => {
     const getCategories = async () => {
       try {
         const response = await fetch('/api/categories');
-        if (!response.ok) {
-          throw new Error('Failed to fetch categories');
-        }
+        if (!response.ok) throw new Error('Failed to fetch categories');
         const data: Category[] = await response.json();
         setCategories(data);
       } catch (err) {
@@ -28,18 +33,39 @@ const TopSearch = () => {
   }, []);
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const categoryId = e.target.value ? Number(e.target.value) : "";
-    setSelectedCategory(categoryId);
+    const selected = e.target.value;
+    setSelectedCategory(Number(selected) || '');
+
+    const params = new URLSearchParams(window.location.search);
+    if (selected) {
+      params.set('category', selected);
+    } else {
+      params.delete('category');
+    }
+    window.location.href =  `/dashboard/product?${params.toString()}`;  
   };
 
+  
+
   const handleSearchClick = () => {
-    console.log('Search triggered for:', searchTerm, selectedCategory);
+    // Check if on client side
+    if (isClient) {
+      const queryParams = new URLSearchParams();
+      if (searchTerm) queryParams.append('searchTerm', searchTerm);
+      if (selectedCategory) queryParams.append('category', selectedCategory.toString());
+      router.push(`/dashboard/product?${queryParams.toString()}`);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearchClick(); 
+    }
   };
 
   return (
     <header className="p-4">
       <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 w-full bg-accent1 border-4 border-foreground rounded-md p-2">
-        
         {/* Category dropdown */}
         <div className="w-full md:w-1/4">
           <select
@@ -64,6 +90,7 @@ const TopSearch = () => {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
             placeholder="Search by keyword..."
             className="p-2 w-full border-2 border-foreground rounded-md"
             aria-label="Search by Product or Artisan"

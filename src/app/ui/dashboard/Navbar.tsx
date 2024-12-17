@@ -29,6 +29,7 @@ export default function SideNav() {
       <div className="md:hidden flex justify-between mx-auto items-center mb-2 z-50">
         <button
           type="button"
+          aria-label="Open navigation menu"
           onClick={toggleMobileMenu}
           className="p-2 rounded-md hover:bg-accent2 transition"
         >
