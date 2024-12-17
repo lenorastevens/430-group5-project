@@ -18,6 +18,7 @@ const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [priceFilter, setPriceFilter] = useState<string>('all'); // State for price filter
 
   const { selectedCategory, searchTerm } = useFilter();
 
@@ -38,6 +39,7 @@ const ProductsPage = () => {
     })();
   }, []);
 
+  // Filter products based on category, search term, and price
   const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === '' || product.category_id === selectedCategory;
     const matchesSearchTerm =
@@ -45,12 +47,40 @@ const ProductsPage = () => {
       product.artisan_firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.artisan_lastname.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return matchesCategory && matchesSearchTerm;
+    let matchesPrice = true;
+    if (priceFilter === 'below25') {
+      matchesPrice = product.product_price < 25;
+    } else if (priceFilter === '25-75') {
+      matchesPrice = product.product_price >= 25 && product.product_price <= 75;
+    } else if (priceFilter === '75-125'){
+      matchesPrice = product.product_price >= 75 && product.product_price <= 125;
+    } else if (priceFilter === 'above125') {
+      matchesPrice = product.product_price > 125;
+    }
+
+    return matchesCategory && matchesSearchTerm && matchesPrice;
   });
 
   return (
     <div className="bg-primary min-h-screen p-4">
       <h1 className="text-secondary text-2xl font-bold text-center mb-6">Products Page</h1>
+
+      {/* Price Filter Select Box */}
+      <div className="mb-6">
+        <label htmlFor="priceFilter" className="sr-only">Filter by price</label>
+        <select
+          id="priceFilter"
+          className="border border-secondary rounded-md p-2 text-sm"
+          value={priceFilter}
+          onChange={(e) => setPriceFilter(e.target.value)} // Update the selected price filter
+        >
+          <option value="all">All Prices</option>
+          <option value="below25">Below $25</option>
+          <option value="25-75">$25 - $75</option>
+          <option value="75-125">$75 - $125</option>
+          <option value="above125">Above $125</option>
+        </select>
+      </div>
 
       {loading && <p className="text-secondary text-center">Loading Products...</p>}
 
@@ -85,7 +115,7 @@ const ProductsPage = () => {
                 >
                   {product.product_name}
                 </Link>
-                <h3 className="text-accent2 font-semibold text-xl mt-2">{`$${product.product_price}`}</h3>
+                <h3 className="text-secondary font-semibold text-xl mt-2">{`$${product.product_price}`}</h3>
                 {/* Hidden on small screens, visible on larger screens */}
                 <p className="text-secondary mt-2 hidden md:block">{product.product_description}</p>
                 <p className="text-secondary mt-1">{`${product.artisan_firstname} ${product.artisan_lastname}`}</p>
