@@ -28,6 +28,7 @@ const ProductDetailsPage = ({ params }: { params: Promise<{ product_id: string }
             throw new Error('Failed to fetch product details');
           }
           const data = await response.json();
+          console.log("Product Data fetched", data.rows)
           setProduct(data[0]);
         } catch (err) {
           setError((err as Error).message);

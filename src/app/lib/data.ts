@@ -39,13 +39,13 @@ export async function createUser(user: {
 export async function addReview(review: {
     review_comment: string;
     review_rating: number;
-    user_id: number;
-    product_id: number;
+    // user_id: number;
+    product_id: string;
 }) {
   try{
   await sql`
-    INSERT INTO review (review_comment, review_rating, user_id, product_id)
-    VALUES (${review.review_comment}, ${review.review_rating}, ${review.user_id}, ${review.product_id})
+    INSERT INTO review (review_comment, review_rating, product_id)
+    VALUES (${review.review_comment}, ${review.review_rating}, ${review.product_id})
   `;
   return true;
 

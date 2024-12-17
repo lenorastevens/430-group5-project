@@ -1,10 +1,11 @@
 export type User = {
     id: string;
-    firstname: string,
-    lastname: string,
+    firstname: string;
+    lastname: string;
     email: string;
     password: string;
-    account_type: string
+    account_type: string;
+    emailVerified: Date | null;
 };
 
 export type Product = {
@@ -46,6 +47,6 @@ export type Review = {
     review_comment: string;
     review_rating: number;
     review_date: Date;
-    user_id: number;
-    product_id: number;
+    // user_id: number;
+    product_id: string;
 };
