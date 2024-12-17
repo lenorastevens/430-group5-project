@@ -1,6 +1,7 @@
 'use server';
  
 import { signIn } from '../../../auth';
+import { AuthError} from 'next-auth';
 import { z } from 'zod';
 import { redirect } from 'next/navigation'; 
 import { createUser, addReview } from '@/app/lib/data'; 
@@ -18,11 +19,29 @@ export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
 ) {
-  
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
-  await signIn('credentials', {email, password});
+  try {
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    await signIn('credentials', {email, password});
     
+
+  } catch (error) {
+    console.log("WHEN AUTHENTICATING WE HAD AN ERROR", error)
+    
+    if (error instanceof AuthError) {
+      const { type, cause } = error as AuthError;
+
+      switch (type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        case "CallbackRouteError":
+          return cause?.err?.toString();
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error;
+  }
   redirect('/dashboard');
 }
 
