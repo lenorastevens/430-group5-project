@@ -13,9 +13,17 @@ export default async function Users() {
 
     return (
     <div className='main-body'>
-      <h1>User Profile Page</h1>
-      <pre>{JSON.stringify(session.user)}</pre>
-
+      <div>
+        <h1 className="text-4xl text-center text-secondary font-sancreek font-semibold mb-4">{session.user.firstname} {session.user.lastname} Profile Page</h1>
+      </div>
+      <div className="mt-8">
+        <div className="bg-accent1  rounded-lg p-6">
+          <h2 className="text-center text-2xl font-semibold mb-4">Email:</h2>
+          <p className="mb-4 text-center"><strong>{session.user.email}</strong></p>
+          <h2 className="text-center text-2xl font-semibold mb-4">Account Type: </h2>
+          <p className="mb-4 text-center"><strong>{session.user.account_type}</strong></p>
+        </div>
+      </div>
     </div>
     );
   }

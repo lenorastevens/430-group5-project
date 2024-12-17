@@ -53,7 +53,7 @@ const ArtisansPage = () => {
                 <tr className="bg-gradient-to-r from-[#EAA037] to-[#F1D5BD]">
                   <th className="text-white uppercase p-3 border-2 border-ridge border-[#EAA037]">First Name</th>
                   <th className="text-white uppercase p-3 border-2 border-ridge border-[#EAA037]">Last Name</th>
-                  <th className="text-white uppercase p-3 border-2 border-ridge border-[#EAA037]">Bio</th>
+                  <th className="hidden sm:table-cell text-white uppercase p-3 border-2 border-ridge border-[#EAA037]">Bio</th>
                 </tr>
               </thead>
               <tbody>
@@ -67,7 +67,7 @@ const ArtisansPage = () => {
 
                     <td className="p-3 border-2 border-ridge border-[#EAA037]">{artisan.artisan_firstname}</td>
                     <td className="p-3 border-2 border-ridge border-[#EAA037]">{artisan.artisan_lastname}</td>
-                    <td className="p-3 border-2 border-ridge border-[#EAA037]">{artisan.artisan_bio}</td>
+                    <td className="hidden sm:table-cell p-3 border-2 border-ridge border-[#EAA037]">{artisan.artisan_bio}</td>
                   </tr>
                 ))}
               </tbody>

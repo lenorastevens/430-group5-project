@@ -68,7 +68,7 @@ const ProductDetailsPage = ({ params }: { params: Promise<{ product_id: string }
   return (
     <div className="main-body py-8 px-4 sm:px-8">
       <div className="product-details">
-        <h1 className="text-3xl text-center font-semibold mb-4">{product.product_name}</h1>
+        <h1 className="text-4xl text-center text-secondary font-sancreek font-semibold mb-4">{product.product_name}</h1>
         <div className="details-container grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="details-img rounded-lg overflow-hidden w-full h-auto">
             <Image
@@ -80,9 +80,11 @@ const ProductDetailsPage = ({ params }: { params: Promise<{ product_id: string }
             />
           </div>
           <div className="details-info flex flex-col p-4 sm:p-6 bg-accent1  rounded-lg shadow-lg">
-            <h3 className="text-xl font-semibold mb-2">{`Price: $${product.product_price}`}</h3>
+            <p><strong>Artisan: </strong> {`${product.artisan_firstname} ${product.artisan_lastname}`} </p>
+            <h3 className="text-xl font-semibold mb-2">Description:</h3>
             <p className="mb-4">{product.product_description}</p>
-            <p>{`Artisan: ${product.artisan_firstname} ${product.artisan_lastname}`}</p>
+            <h3 className="text-xl font-semibold mb-2">{`Price: $${product.product_price}`}</h3>
+
           </div>
         </div>
       </div>
