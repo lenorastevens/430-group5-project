@@ -26,6 +26,6 @@ export async function GET() {
       { status: 500 }
     );
   } finally {
-    if (client) client.release(); // Ensure connection is released
+    if (client) client.release(); 
   }
 }

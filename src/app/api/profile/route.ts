@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     return new Response('Artisan ID is required', { status: 400 });
   }
 
-  console.log('artisanId:', artisanId); // Debugging the artisanId value
+  console.log('artisanId:', artisanId); 
 
   try {
     const client = await pool.connect();

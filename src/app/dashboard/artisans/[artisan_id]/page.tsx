@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Artisan, Product } from "@/app/lib/definitions";
 import Link from 'next/link';
-import { use } from 'react'; // Ensure use is imported
+import { use } from 'react'; 
 
 const ArtisanProfilePage = ({ params }: { params: Promise<{ artisan_id: string }> }) => {
-  const resolvedParams = use(params); // Unwrap the promise
+  const resolvedParams = use(params); 
   const artisan_id = resolvedParams.artisan_id;
 
   const [artisan, setArtisan] = useState<Artisan | null>(null);

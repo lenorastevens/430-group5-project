@@ -18,7 +18,7 @@ const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [priceFilter, setPriceFilter] = useState<string>('all'); // State for price filter
+  const [priceFilter, setPriceFilter] = useState<string>('all'); 
 
   const { selectedCategory, searchTerm, setSelectedCategory, setSearchTerm } = useFilter();
 
@@ -30,7 +30,6 @@ const ProductsPage = () => {
     const queryCategory = params.get('category');
   
     
-    // Set the state based on query params if available
     if (querySearchTerm && typeof querySearchTerm === 'string') {
       setSearchTerm(querySearchTerm);
     }
@@ -53,7 +52,6 @@ const ProductsPage = () => {
     })();
   }, []);
 
-  // Filter products based on category, search term, and price
   const filteredProducts = products.filter((product) => {
   const matchesCategory = selectedCategory === '' || product.category_id === selectedCategory;
   const matchesSearchTerm =
@@ -86,7 +84,7 @@ const ProductsPage = () => {
           id="priceFilter"
           className="border border-secondary rounded-md p-2 text-sm"
           value={priceFilter}
-          onChange={(e) => setPriceFilter(e.target.value)} // Update the selected price filter
+          onChange={(e) => setPriceFilter(e.target.value)} 
         >
           <option value="all">All Prices</option>
           <option value="below25">Below $25</option>

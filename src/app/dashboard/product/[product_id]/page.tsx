@@ -7,7 +7,7 @@ import { use } from 'react';
 import ReviewForm from '@/app/ui/products/review-form';
 
 const ProductDetailsPage = ({ params }: { params: Promise<{ product_id: string }> }) => {
-  const resolvedParams = use(params); // Unwrap the `params` Promise here
+  const resolvedParams = use(params); 
   const product_id = resolvedParams.product_id;
   
   const [product, setProduct] = useState<Product | null>(null);
